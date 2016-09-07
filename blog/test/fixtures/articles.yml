@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   title: MyString
+#   text: MyText
+
+# two:
+#   title: MyString
+#   text: MyText
+<% 1000.times do |n| %>
+user_<%= n %>:
+  title: <%= "user#{n}" %>
+  text: <%= "user#{n}@example.com" %>
+<% end %>
