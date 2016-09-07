@@ -1,0 +1,35 @@
+<% if @company.errors.any? %>
+	<% @company.errors.full_messages.each do |x| %>
+	<%=x%>
+	<%end%>
+<%end%>
+
+<%=form_for @company  do |f| %>
+
+Name: <%= f.text_field :name %>
+ <%= f.fields_for :addr , @company.address do |addr| %>
+Address: <%= addr.text_field :info %>
+
+<br><br><br>
+
+<%end%>
+<%= f.email_field :email, placeholder: "Your email id" %>
+<%= f.password_field :password ,placeholder: "Enter your password"%>
+<%= f.password_field :password_confirmation ,placeholder: "Re Enter your password"%>
+    <ul id="myList">
+    </ul>
+ <%= submit_tag "Add address", :type => 'button', :id => 'addAddress', :onclick => 'addAddressField()' %> 
+<%= f.submit "submit" %>
+<%end%>
+<br>
+<br>
+<button onclick=hello()>Click javascript</button>
+<div id='addform'>
+</div>
+
+
+
+<!-- 
+params = ActionController::Parameters.new({
+     "company"=>{"name"=>"dsa", "addr"=>{"info"=>"dds"}, "email"=>"asd@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "employee"=>{"1472808605046"=>{"name"=>"jjkga", "phone"=>"sdf@gmail.com"}, "1472808606047"=>{"name"=>"nmxbm", "phone"=>"dsfn@gmail.com"}}}
+   ) -->

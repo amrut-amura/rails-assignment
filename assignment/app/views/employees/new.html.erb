@@ -1,0 +1,12 @@
+<%= form_for @employee , url: company_employees_path do |f|%>
+	
+Name:<%= f.text_field :name %>
+Email: <%= f.email_field :email%>
+phone <%= f.text_field :phone %>
+designation: <%= f.text_field :designation%>
+salary <%= f.text_field :salary %>
+<%= f.fields_for :addr , @employee.build_address do |a|%>
+<%= a.text_field :info , placeholder: "enter address"%>
+<% end %>
+<%= f.submit %>
+<% end %>

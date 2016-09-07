@@ -1,0 +1,54 @@
+<%= flash[:success] %>
+
+name: <%= @company.name%><br>
+address: <%= @company.address.info %>
+<br><br>
+<br>
+<h1>
+<%= html_put %>
+</h1>
+Employees are
+<br>
+<br>
+
+<% @company.employees.each do |x| %>
+<tr>
+	<td>
+		<%=x.name%>
+	</td>
+	<td>
+		<%=x.email%>
+	</td>
+	<td>
+		<%=x.phone%>
+	</td>
+
+	<td>
+		<%=x.salary%>
+	</td>
+
+	<td>
+		<%=x.designation%>
+	</td>
+	<td>
+		<%=x.address.info%>
+	</td>
+	<td>
+		<%=link_to "Delete" , [@company,x] ,method: :delete,data:{confirm: "Are you sure?"}%>
+	</td>
+	<td>
+		<%=link_to "Edit" , [:edit , @company,x] %>
+	</td>
+	<br>
+</tr>
+<%end%>
+<br>
+<br>
+<%= form_for :search ,url: company_search_path(@company) do |f| %>
+<%=f.text_field :name, placeholder: "Search name"%>
+<%= f.submit%>
+<%end%>
+
+<%=link_to "add employee" , new_company_employee_path(@company) %>
+
+<%= link_to "Logout" ,[@company,:logout] %>

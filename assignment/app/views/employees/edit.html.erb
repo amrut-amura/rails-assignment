@@ -1,0 +1,21 @@
+<%= form_for :employee , url: company_employee_path  do |f|%>
+	
+
+<%if @employee.errors.any? %>
+<% @employee.errors.full_messages.each do |x| %>
+<%= x %>
+<br>
+<%end%>
+<%end%>
+<br><br>
+
+Name:<%= f.text_field :name %>
+Email: <%= f.email_field :email%>
+phone <%= f.text_field :phone %>
+designation: <%= f.text_field :designation%>
+salary <%= f.text_field :salary %>
+<%= f.fields_for :addr ,@employee.address do |a|%>
+<%= a.text_field :info %>
+<% end %>
+<%= f.submit %>
+<% end %>

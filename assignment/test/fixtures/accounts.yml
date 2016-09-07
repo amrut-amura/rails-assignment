@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bank: MyString
+  employee_id: 1
+
+two:
+  bank: MyString
+  employee_id: 1

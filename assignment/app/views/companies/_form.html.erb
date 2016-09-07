@@ -1,0 +1,19 @@
+<% if @company.errors.any? %>
+	<% @company.errors.full_messages.each do |x| %>
+	<%=x%>
+	<%end%>
+<%end%>
+
+<%=form_for @company , method: met  do |f| %>
+
+Name: <%= f.text_field :name %>
+Email: <%= f.email_field :email %>
+
+ <%= f.fields_for :addr , @company.address do |addr| %>
+Address: <%= addr.text_field :info %>
+
+<br><br><br>
+
+<%end%>
+<%= f.submit "submit" %>
+<%end%>

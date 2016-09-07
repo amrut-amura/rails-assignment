@@ -1,0 +1,19 @@
+
+<%= nested_hash.fields_for for_field.to_sym  do |f|%>
+	
+Name:<%= f.text_field :name %><br>
+Email: <%= f.email_field :email%><br>
+phone <%= f.text_field :phone %><br>
+designation: <%= f.text_field :designation%><br>
+salary <%= f.text_field :salary %><br>
+<%= f.fields_for :addr  do |a|%>
+<%= a.text_field :info , placeholder: "enter address"%><br>
+<% end %>
+<% end %>
+<br>
+
+
+
+<% 2.times do |x| %>
+<%= render 'addr' , nested_hash: f , for_field: "employee[#{x}]"%>
+<%end%>

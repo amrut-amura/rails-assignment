@@ -1,0 +1,25 @@
+<% @companies.each do |x|  %>
+<% cache x do %>
+<tr>
+<td>
+<%= x.name %>
+</td>
+<td>
+<%= x.address.info %>
+</td>
+<td>
+<%= link_to "Show", [x] %>
+</td>
+<td>
+<%= link_to "Delete" ,[x], method: :delete %>
+</td>
+<td>
+<%= link_to "Edit" ,edit_company_path(x) %>
+</td>
+</tr><br>
+<% end%>
+<%end%>
+<br>
+<br>
+
+<%= link_to "Create Company",new_company_path %>
