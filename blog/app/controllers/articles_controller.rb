@@ -2,15 +2,14 @@ class ArticlesController < ApplicationController
 	
 	def index
 		@article = Article.all
-		puts request.env["REMOTE_ADDR"]
-		# puts response.inspect
+		render json: @article
 	end
 	def app
-		# head :bad_request
 		redirect_to "https://www.google.com"
 	end
 	def show
 		@article = Article.find(params[:id])
+		render json: [@article,@article.comments]
 	end
 
 	def new
@@ -22,30 +21,29 @@ class ArticlesController < ApplicationController
 
 	def create
 		 @article = Article.new(article_params)
-
- 
 		  if @article.save
 		  		flash[:notice] = " Article is successfully created."
-		   	 	redirect_to @article
-		   	 	puts @article.object_id
+		  		render json: @article
 		  else
-		    	render 'new'
+		    	render nothing: true, status: :bad_request
 		  end
 	end
 	def update
 		  @article = Article.find(params[:id])
 		 
 		  if @article.update(article_params)
-		    	redirect_to @article
+		    	render json: @article
 		  else
-		    	render 'edit'
+		    	render nothing: true, status: :bad_request
 		  end
 	end
 	def destroy
-		  @article = Article.find(params[:id])
-		  @article.destroy
-		 
-		  redirect_to articles_path
+		 @article = Article.find(params[:id])
+		 if @article.destroy
+		 	render nothing: true
+		 else
+		  render nothing: true, status: :bad_request
+		 end
 	end
 
 	private
